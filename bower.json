@@ -1,0 +1,29 @@
+{
+  "name": "knockout-typeahead",
+  "version": "1.0.0",
+  "description": "Simple knockout binding that wraps Twitter typeahead.js",
+  "main": "knockout.bootstrap.modal.js",
+  "keywords": [
+    "knockout",
+    "bootstrap",
+    "modal",
+    "dialog"
+  ],
+  "authors": [
+    "Archon Information Systems"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/ArchonInfoSys/knockout-bootstrap-modal",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "knockout": "~3.1.0",
+    "jquery": "~1.10",
+    "typeahead.js": "~0.10.2"
+  }
+}
