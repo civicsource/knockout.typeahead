@@ -1,43 +1,64 @@
-(function(root, factory) {
-	if (typeof define === 'function' && define.amd) {
-		// AMD. Register as an anonymous module.
-		define(["knockout", "jquery", "typeahead"], factory);
-	} else {
-		// Browser globals
-		factory(ko, $);
-	}
-}(this, function(ko, $) {
+define(["knockout", "jquery", "typeahead",
+"less!app/../less/typeahead"], function (ko, $) {
 	ko.bindingHandlers.typeahead = {
-		init: function(element, options, allBindingsAccessor) {
-			// http://stackoverflow.com/a/19366003/1247130 get value to update properly when typeahead choice is selected
-			var
-				allBindings = allBindingsAccessor(),
-				updateValues = function(val) {
-					allBindings.value(val);
-				},
-				suggestions = new Bloodhound({
-					datumTokenizer: function(token) {
-						return Bloodhound.tokenizers.whitespace(token);
-					},
-					queryTokenizer: Bloodhound.tokenizers.whitespace,
-					remote: ko.unwrap(options())
-				});
+		init: function (element, valueAccessor, allBindings) {
+			// http://stackoverflow.com/a/19366003/1247130 get value to update properly when typeahead choice is selected.
 
+			var url = ko.unwrap(valueAccessor());
+			var auth = (allBindings.has('authToken'))?  {
+				"Authorization": "Bearer " + ko.unwrap(allBindings().authToken)
+			} : {};
+			var remoteData = {
+				url: url,
+				ajax: {
+					headers: auth
+				}
+			};
+
+			var suggestions = new Bloodhound({
+				datumTokenizer: function (token) {
+					return Bloodhound.tokenizers.whitespace(token);
+				},
+				queryTokenizer: Bloodhound.tokenizers.whitespace,
+				remote: remoteData
+			});
 			suggestions.initialize();
 
-			$(element).typeahead({
-				hint: true,
-				highlight: true
-			}, {
-				source: suggestions.ttAdapter(),
-				display: function(item) {
-					return item;
+
+			var templateName = ko.unwrap(allBindings().templateName);
+			var returnedProperties = ko.unwrap(allBindings().returned);
+
+			var update = function (selection) {
+				if (allBindings.has('value')) {
+					allBindings.value(selection);
 				}
-			}).on('typeahead:selected', function(el, item) {
-				updateValues(item);
-			}).on('typeahead:autocompleted', function(el, item) {
-				updateValues(item);
-			});
+			};
+
+			$(element)
+				.typeahead({
+					hint: true,
+					highlight: true
+				},
+				{
+					source: suggestions.ttAdapter(),
+					display: function (item) {
+						if (templateName) {
+							var temp = document.createElement("div");
+							ko.renderTemplate(templateName, item, null, temp, "replaceChildren");
+
+							return temp.innerHTML;
+						}
+
+						else {
+							return item;
+						}
+					}
+				});
+
+			//	.on('typeahead:selected', function (el, item) {
+			//	updateValues(item);
+			//}).on('typeahead:autocompleted', function (el, item) {
+			//	updateValues(item);
 		}
 	};
-}));
+});
