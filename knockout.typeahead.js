@@ -4,8 +4,13 @@ define(["knockout", "jquery", "typeahead",
 		init: function (element, valueAccessor, allBindings) {
 			// http://stackoverflow.com/a/19366003/1247130 get value to update properly when typeahead choice is selected.
 
+			var templateName = ko.unwrap(allBindings().templateName);
+			var mapping = ko.unwrap(allBindings().mappingFunction);
+			var displayedProperty = ko.unwrap(allBindings().displayKey);
+			var returnedProperty = ko.unwrap(allBindings().returnKey);
+
 			var url = ko.unwrap(valueAccessor());
-			var auth = (allBindings.has('authToken'))?  {
+			var auth = (allBindings.has('authToken')) ? {
 				"Authorization": "Bearer " + ko.unwrap(allBindings().authToken)
 			} : {};
 			var remoteData = {
@@ -24,13 +29,15 @@ define(["knockout", "jquery", "typeahead",
 			});
 			suggestions.initialize();
 
+			var persistReturnValue = function (item) {
+				if (returnedProperty) {
+					$(element).attr("data-return-value", $(item).attr(returnedProperty));
+				}
 
-			var templateName = ko.unwrap(allBindings().templateName);
-			var returnedProperties = ko.unwrap(allBindings().returned);
-
-			var update = function (selection) {
-				if (allBindings.has('value')) {
-					allBindings.value(selection);
+				else {
+					if (allBindings.has("value")) {
+						allBindings().value(item);
+					}
 				}
 			};
 
@@ -41,24 +48,31 @@ define(["knockout", "jquery", "typeahead",
 				},
 				{
 					source: suggestions.ttAdapter(),
-					display: function (item) {
-						if (templateName) {
-							var temp = document.createElement("div");
-							ko.renderTemplate(templateName, item, null, temp, "replaceChildren");
+					displayKey: displayedProperty || function (item) {
+						return item;
+					},
+					templates: {
+						suggestion: function (item) {
+							if (templateName) {
+								var temp = document.createElement("div");
+								var model = mapping ? mapping(item) : item;
+								ko.renderTemplate(templateName, model, null, temp, "replaceChildren");
 
-							return temp.innerHTML;
-						}
+								return temp.innerHTML;
+							}
 
-						else {
-							return item;
+							else {
+								return item;
+							}
 						}
 					}
+				})
+				.on('typeahead:selected', function (event, item) {
+					persistReturnValue(item);
+				})
+				.on('typeahead:autocompleted', function (event, item) {
+					persistReturnValue(item);
 				});
-
-			//	.on('typeahead:selected', function (el, item) {
-			//	updateValues(item);
-			//}).on('typeahead:autocompleted', function (el, item) {
-			//	updateValues(item);
 		}
 	};
 });
