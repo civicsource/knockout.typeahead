@@ -38,5 +38,5 @@ function ViewModel() {
 If you are returning complex objects for suggestions, pass a `templateName` into the binding to use a custom template.
 
 ```html
-<input data-bind="value: myValue, typeahead: autocompleteMyValue, templateName 'my-suggestion-template'" />
+<input data-bind="value: myValue, typeahead: autocompleteMyValue, templateName: 'my-suggestion-template'" />
 ```
