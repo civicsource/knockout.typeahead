@@ -40,3 +40,8 @@ If you are returning complex objects for suggestions, pass a `templateName` into
 ```html
 <input data-bind="value: myValue, typeahead: autocompleteMyValue, templateName: 'my-suggestion-template'" />
 ```
+
+##Additional Binding Options
+* function `mappingFunction`: Function on your model which will map the suggestion data returned from your queries (e.g. so you can use computed observables and extenders in your template)
+* string `displayKey`: Property name on complex object suggestion data which will be used to populate the hint/value of the typeahead input.
+* string `returnKey`: Property name on complex object suggestion data which will populate the `data-return-value` attribute of the bound element.
