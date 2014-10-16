@@ -7,7 +7,6 @@ define(["knockout", "jquery", "typeahead",
 			var templateName = ko.unwrap(allBindings().templateName);
 			var mapping = ko.unwrap(allBindings().mappingFunction);
 			var displayedProperty = ko.unwrap(allBindings().displayKey);
-			var returnedProperty = ko.unwrap(allBindings().returnKey);
 
 			var url = ko.unwrap(valueAccessor());
 			var auth = (allBindings.has('authToken')) ? {
@@ -28,18 +27,6 @@ define(["knockout", "jquery", "typeahead",
 				remote: remoteData
 			});
 			suggestions.initialize();
-
-			var persistReturnValue = function (item) {
-				if (returnedProperty) {
-					$(element).attr("data-return-value", $(item).attr(returnedProperty));
-				}
-
-				else {
-					if (allBindings.has("value")) {
-						allBindings().value(item);
-					}
-				}
-			};
 
 			$(element)
 				.typeahead({
@@ -66,12 +53,6 @@ define(["knockout", "jquery", "typeahead",
 							}
 						}
 					}
-				})
-				.on('typeahead:selected', function (event, item) {
-					persistReturnValue(item);
-				})
-				.on('typeahead:autocompleted', function (event, item) {
-					persistReturnValue(item);
 				});
 		}
 	};
