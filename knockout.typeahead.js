@@ -18,13 +18,15 @@ define(["knockout", "jquery", "typeahead",
 					headers: auth
 				}
 			};
+			var resultsLimit = allBindings.get("limit") || 10;
 
 			var suggestions = new Bloodhound({
 				datumTokenizer: function (token) {
 					return Bloodhound.tokenizers.whitespace(token);
 				},
 				queryTokenizer: Bloodhound.tokenizers.whitespace,
-				remote: remoteData
+				remote: remoteData,
+				limit: resultsLimit
 			});
 			suggestions.initialize();
 
