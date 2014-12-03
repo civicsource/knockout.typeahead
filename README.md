@@ -44,4 +44,3 @@ If you are returning complex objects for suggestions, pass a `templateName` into
 ##Additional Binding Options
 * function `mappingFunction`: Function on your model which will map the suggestion data returned from your queries (e.g. so you can use computed observables and extenders in your template)
 * string `displayKey`: Property name on complex object suggestion data which will be used to populate the hint/value of the typeahead input.
-*  observable `value`: assigns the value of the selected suggestion to this observable 
