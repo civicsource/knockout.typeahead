@@ -1,6 +1,6 @@
 {
   "name": "knockout-typeahead",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Simple knockout binding that wraps Twitter typeahead.js",
   "main": "knockout.typeahead.js",
   "keywords": [
