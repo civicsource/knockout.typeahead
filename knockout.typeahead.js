@@ -51,7 +51,7 @@ define(["knockout", "jquery", "typeahead",
 								var model = mapping ? mapping(item) : item;
 								ko.renderTemplate(templateName, model, null, temp, "replaceChildren");
 
-								return temp.innerHTML;
+								return temp;
 							}
 
 							else {
