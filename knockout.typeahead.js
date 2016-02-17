@@ -34,32 +34,30 @@ define(["knockout", "jquery", "typeahead",
 
 			$(element).typeahead('destroy');
 
+			var typeaheadOpts = {
+				source: suggestions.ttAdapter(),
+				displayKey: displayedProperty || function (item) {
+					return item;
+				}
+			};
+
+			if (templateName) {
+				typeaheadOpts.templates = {
+					suggestion: function (item) {
+						var temp = document.createElement("div");
+						var model = mapping ? mapping(item) : item;
+						ko.renderTemplate(templateName, model, null, temp, "replaceChildren");
+
+						return temp;
+					}
+				};
+			}
+
 			$(element)
 				.typeahead({
 					hint: true,
 					highlight: true
-				},
-				{
-					source: suggestions.ttAdapter(),
-					displayKey: displayedProperty || function (item) {
-						return item;
-					},
-					templates: {
-						suggestion: function (item) {
-							if (templateName) {
-								var temp = document.createElement("div");
-								var model = mapping ? mapping(item) : item;
-								ko.renderTemplate(templateName, model, null, temp, "replaceChildren");
-
-								return temp;
-							}
-
-							else {
-								return item;
-							}
-						}
-					}
-				})
+				}, typeaheadOpts)
 			.on("typeahead:selected typeahead:autocompleted", function (e, suggestion) {
 				if (value && ko.isObservable(value)) {
 					value(suggestion);
