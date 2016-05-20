@@ -1,5 +1,4 @@
-define(["knockout", "jquery", "typeahead",
-"app/less/typeahead"], function (ko, $) {
+define(["knockout", "jquery", "typeahead", "less/typeahead"], function (ko, $) {
 	ko.bindingHandlers.typeahead = {
 		update: function (element, valueAccessor, allBindings) {
 			// http://stackoverflow.com/a/19366003/1247130 get value to update properly when typeahead choice is selected.
