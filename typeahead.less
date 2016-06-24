@@ -1,0 +1,67 @@
+.tt();
+
+.tt() {
+.twitter-typeahead {
+	display: block !important;
+	.input-group &{
+		// https://github.com/hyspace/typeahead.js-bootstrap3.less/blob/master/typeahead.less
+		display: table-cell!important;
+		float: left;
+		width: 100%;
+	}
+}
+
+.tt-query,
+.tt-hint {
+}
+
+.tt-query { box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
+.tt-hint {
+	color: #999 !important;
+	margin: 0;
+	vertical-align: middle;
+}
+
+.tt-dropdown-menu {
+	width: 100%;
+	min-width: 18em;
+	margin-top: .25em;
+	padding: 8px 0;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 3px;
+	box-shadow: 0 3px 5px rgba(0,0,0,.1);
+}
+
+.tt-suggestion {
+	@cl-highlight-base: hsl(53.2, 100%, 50%);
+	@cl-cursor-base: hsl(196.2, 100%, 40.6%);
+	cursor: pointer;
+	padding: .5em 1em;
+	p { margin: 0; }
+	strong {
+		background: mix(@cl-highlight-base,#fff,20%);
+		border-radius: 3px;
+	}
+	// .tt-no-highlight is a class we add indicating
+	// that this part of the returned data was not a match
+	.tt-no-highlight strong {
+		background: none;
+		font-weight: normal;
+	}
+	&.tt-cursor {		
+		color: #fff;
+		background-color: @cl-cursor-base;
+		strong {
+			background-color: multiply(@cl-cursor-base, lighten(desaturate(@cl-highlight-base,90%), 37%));
+			text-shadow:
+				1px 1px 0 darken(mix(@cl-highlight-base,@cl-cursor-base,30%),25%);
+		}
+		.tt-no-highlight strong {
+			background: none;
+			text-shadow: none;
+		}
+	}
+}
+}

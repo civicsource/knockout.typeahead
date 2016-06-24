@@ -1,0 +1,33 @@
+{
+  "name": "knockout.typeahead",
+  "version": "4.0.0",
+  "description": "Simple knockout binding which wraps Twitter typeahead.js",
+  "main": "knockout.typeahead.js",
+  "scripts": {
+    "lint": "eslint . --format=unix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/civicsource/knockout.typeahead.git"
+  },
+  "keywords": [
+    "knockout",
+    "typeahead"
+  ],
+  "author": "CivicSource",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/civicsource/knockout.typeahead/issues"
+  },
+  "homepage": "https://github.com/civicsource/knockout.typeahead#readme",
+  "peerDependencies": {
+    "knockout": "3.x",
+    "jquery": "x",
+    "typeahead.js": "^0.10.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "6.x",
+    "eslint": "2.x",
+    "eslint-plugin-filenames": "1.x"
+  }
+}

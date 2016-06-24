@@ -1,26 +1,17 @@
 #Knockout Typeahead Binding
 
-> Simple knockout binding that wraps [Twitter typeahead.js](http://twitter.github.io/typeahead.js/)
+> Simple knockout binding which wraps [Twitter typeahead.js](http://twitter.github.io/typeahead.js/)
 
-##Install with [Bower](http://bower.io/)
+##Installation
 
 ```
-bower install knockout-typeahead
+npm install knockout.typeahead
 ```
 
-Then add `knockout.typeahead.js` to your project. If you are using AMD, also be sure to alias in your requirejs config `typeahead` as `typeahead.bundle.js`:
 
-```js
-requirejs.config({
-    paths: {
-        'typehead': 'bower_components/typeahead.js/dist/typeahead.bundle'
-    }
-});
-```
+##Usage
 
-##How to Use
-
-Include the script on your page (either via a normal script tag or via an AMD loader). Then bind it to an element:
+Include in your bundle with browserify or webpack. You will need to have a loader configured for less files in order to get styling from the included stylesheet, or you can bring your own.
 
 ```html
 <input data-bind="value: myValue, typeahead: autocompleteMyValue" />

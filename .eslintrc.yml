@@ -1,0 +1,26 @@
+parser: babel-eslint
+env:
+  browser: true
+  commonjs: true
+  es6: true
+globals:
+  Bloodhound: true
+  __filename: true
+  __dirname: true
+extends:
+  - eslint:recommended
+plugins:
+  - filenames
+rules:
+  indent:
+    - error
+    - tab
+  quotes:
+    - error
+    - double
+  semi:
+    - error
+    - always
+  filenames/match-regex:
+    - error
+    - ^[a-z\-\.]+$
