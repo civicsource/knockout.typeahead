@@ -1,5 +1,11 @@
 var ko = require("knockout");
 var $ = require("jquery");
+
+// hack to make typeahead work because it expects a global
+if (window && !window.jQuery) {
+	window.jQuery = $;
+}
+
 require("typeahead.js");
 require("./typeahead.less");
 
@@ -13,6 +19,7 @@ ko.bindingHandlers.typeahead = {
 		var value = allBindings.get("value");
 
 		var url = ko.unwrap(valueAccessor());
+		var remoteFilter = ko.unwrap(allBindings.get("remoteFilter"));
 		var auth = (allBindings.has("authToken")) ? {
 			"Authorization": "Bearer " + ko.unwrap(allBindings().authToken)
 		} : {};
@@ -22,6 +29,10 @@ ko.bindingHandlers.typeahead = {
 				headers: auth
 			}
 		};
+		if (remoteFilter) {
+			remoteData.filter = remoteFilter;
+		};
+
 		var resultsLimit = allBindings.get("limit") || 10;
 
 		var suggestions = new Bloodhound({
