@@ -2,3 +2,4 @@
 /node_modules
 .grunt
 _SpecRunner.html
+example/build.js

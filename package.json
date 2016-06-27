@@ -1,0 +1,47 @@
+{
+  "name": "knockout.typeahead",
+  "version": "4.0.0",
+  "description": "Simple knockout binding which wraps Twitter typeahead.js",
+  "main": "knockout.typeahead.js",
+  "scripts": {
+    "lint": "eslint . --format=unix",
+    "build": "webpack --progress",
+    "watch": "webpack --progress --watch",
+    "serve": "http-server example -p 1342 -o -c-1",
+    "start": "npm run build && npm run serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/civicsource/knockout.typeahead.git"
+  },
+  "keywords": [
+    "knockout",
+    "typeahead"
+  ],
+  "author": "CivicSource",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/civicsource/knockout.typeahead/issues"
+  },
+  "homepage": "https://github.com/civicsource/knockout.typeahead#readme",
+  "dependencies": {
+    "jquery": ">=1.10",
+    "typeahead.js": "^0.10.2"
+  },
+  "peerDependencies": {
+    "knockout": "3.x"
+  },
+  "devDependencies": {
+    "babel-eslint": "6.x",
+    "css-loader": "^0.23.1",
+    "eslint": "2.x",
+    "eslint-plugin-filenames": "1.x",
+    "html-loader": "^0.4.3",
+    "http-server": "^0.9.0",
+    "knockout-template-loader": "^1.0.1",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1"
+  }
+}
