@@ -1,7 +1,7 @@
 var ko = require("knockout");
 var $ = require("jquery");
 require("typeahead.js");
-require("typeahead.less");
+require("./typeahead.less");
 
 ko.bindingHandlers.typeahead = {
 	update: function (element, valueAccessor, allBindings) {
