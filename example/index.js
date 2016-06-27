@@ -1,6 +1,7 @@
 var $ = require("jquery");
 var ko = require("knockout");
 require("../knockout.typeahead");
+require("knockout-template?name=example-suggestion!html?-minimize!./suggestion.html");
 
 var viewModel = {
 	myValue: ko.observable(),
