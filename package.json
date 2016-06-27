@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/civicsource/knockout.typeahead#readme",
   "dependencies": {
-    "jquery": "x",
+    "jquery": ">=1.10",
     "typeahead.js": "^0.10.2"    
   },
   "peerDependencies": {
