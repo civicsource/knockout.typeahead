@@ -26,10 +26,12 @@ function ViewModel() {
 }
 ```
 
-If you are returning complex objects for suggestions, pass a `templateName` into the binding to use a custom template.
+If the remote endpoint you are querying is returning a complex object instead of an array of suggestions, you can pass a `remoteFilter` parameter to the binding, a function on your view model which returns the portion of the response object containing the array of suggestions.
+
+If you are returning complex objects as suggestions, pass a `templateName` into the binding to use a custom template.
 
 ```html
-<input data-bind="value: myValue, typeahead: autocompleteMyValue, templateName: 'my-suggestion-template'" />
+<input data-bind="value: myValue, typeahead: autocompleteMyValue, remoteFilter: pluckResults, templateName: 'my-suggestion-template'" />
 ```
 
 ##Additional Binding Options
