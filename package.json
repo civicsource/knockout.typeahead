@@ -20,10 +20,12 @@
     "url": "https://github.com/civicsource/knockout.typeahead/issues"
   },
   "homepage": "https://github.com/civicsource/knockout.typeahead#readme",
-  "peerDependencies": {
-    "knockout": "3.x",
+  "dependencies": {
     "jquery": "x",
-    "typeahead.js": "^0.10.2"
+    "typeahead.js": "^0.10.2"    
+  },
+  "peerDependencies": {
+    "knockout": "3.x"
   },
   "devDependencies": {
     "babel-eslint": "6.x",
