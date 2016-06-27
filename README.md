@@ -34,6 +34,8 @@ If you are returning complex objects as suggestions, pass a `templateName` into 
 <input data-bind="value: myValue, typeahead: autocompleteMyValue, remoteFilter: pluckResults, templateName: 'my-suggestion-template'" />
 ```
 
+Clone the repository then `npm i && npm run start` to build the example.
+
 ##Additional Binding Options
 * function `mappingFunction`: Function on your model which will map the suggestion data returned from your queries (e.g. so you can use computed observables and extenders in your template)
 * string `displayKey`: Property name on complex object suggestion data which will be used to populate the hint/value of the typeahead input.
