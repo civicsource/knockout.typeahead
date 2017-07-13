@@ -15,6 +15,7 @@ ko.bindingHandlers.typeahead = {
 
 		var templateName = ko.unwrap(allBindings().templateName);
 		var mapping = ko.unwrap(allBindings().mappingFunction);
+		var onSelect = allBindings.get("onSelectFunction");
 		var displayedProperty = ko.unwrap(allBindings().displayKey);
 		var value = allBindings.get("value");
 
@@ -73,7 +74,9 @@ ko.bindingHandlers.typeahead = {
 				highlight: true
 			}, typeaheadOpts)
 		.on("typeahead:selected typeahead:autocompleted", function (e, suggestion) {
-			if (value && ko.isObservable(value)) {
+			if (onSelect) {
+				onSelect(value, suggestion, e)
+			}else if (value && ko.isObservable(value)) {
 				value(suggestion);
 			}
 		});
