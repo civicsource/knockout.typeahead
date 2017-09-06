@@ -26,9 +26,6 @@ ko.bindingHandlers.typeahead = {
 		var auth = (allBindings.has("authToken")) ? {
 			"Authorization": "Bearer " + ko.unwrap(allBindings().authToken)
 		} : {};
-		if (remoteFilter) {
-			remoteData.filter = remoteFilter;
-		};
 
 		var resultsLimit = allBindings.get("limit") || 10;
 
@@ -40,7 +37,6 @@ ko.bindingHandlers.typeahead = {
 		if (localSuggestions != false) {
 			bloodhound_options.datumTokenizer = function (token) {
 				var t = token
-				// console.log(Object.prototype.toString.call(t) == "[object Object]")
 				if (Object.prototype.toString.call(t) == "[object Object]") {
 					t = token[displayedProperty]
 				}
@@ -57,6 +53,10 @@ ko.bindingHandlers.typeahead = {
 					headers: auth
 				}
 			};
+			if (remoteFilter) {
+				bloodhound_options.remote.filter = remoteFilter;
+			};
+
 		}
 
 		var suggestions = new Bloodhound(bloodhound_options);
