@@ -25,15 +25,17 @@ ko.bindingHandlers.typeahead = {
 		var auth = (allBindings.has("authToken")) ? {
 			"Authorization": "Bearer " + ko.unwrap(allBindings().authToken)
 		} : {};
+
 		var remoteData = {
 			url: url,
 			ajax: {
 				headers: auth
 			}
 		};
+
 		if (remoteFilter) {
 			remoteData.filter = remoteFilter;
-		};
+		}
 
 		var resultsLimit = allBindings.get("limit") || 10;
 
@@ -72,12 +74,12 @@ ko.bindingHandlers.typeahead = {
 		$(element)
 			.typeahead($.extend({
 				hint: true,
-				highlight: true,
+				highlight: true
 			}, user_typeahead_options), typeaheadOpts)
 		.on("typeahead:selected typeahead:autocompleted", function (e, suggestion) {
 			if (onSelect) {
-				onSelect(value, suggestion, e)
-			}else if (value && ko.isObservable(value)) {
+				onSelect(value, suggestion, e);
+			} else if (value && ko.isObservable(value)) {
 				value(suggestion);
 			}
 		});
