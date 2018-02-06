@@ -70,7 +70,7 @@ ko.bindingHandlers.typeahead = {
 		}
 
 		$(element)
-			.typeahead(jQuery.extend({
+			.typeahead($.extend({
 				hint: true,
 				highlight: true,
 			}, user_typeahead_options), typeaheadOpts)
