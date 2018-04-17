@@ -1,15 +1,15 @@
-#Knockout Typeahead Binding
+# Knockout Typeahead Binding
 
 > Simple knockout binding which wraps [Twitter typeahead.js](http://twitter.github.io/typeahead.js/)
 
-##Installation
+## Installation
 
 ```
 npm install knockout.typeahead
 ```
 
 
-##Usage
+## Usage
 
 Include in your bundle with browserify or webpack. You will need to have a loader configured for less files in order to get styling from the included stylesheet, or you can bring your own.
 
@@ -36,6 +36,6 @@ If you are returning complex objects as suggestions, pass a `templateName` into 
 
 Clone the repository then `npm i && npm run start` to build the example.
 
-##Additional Binding Options
+## Additional Binding Options
 * function `mappingFunction`: Function on your model which will map the suggestion data returned from your queries (e.g. so you can use computed observables and extenders in your template)
 * string `displayKey`: Property name on complex object suggestion data which will be used to populate the hint/value of the typeahead input.
